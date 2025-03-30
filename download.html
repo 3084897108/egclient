@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>远程控制系统 - 免费下载中心</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        .download-section {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 150px 0 100px;
+        }
+        
+        .download-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+        
+        .download-card {
+            background: rgba(18, 18, 37, 0.7);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(74, 105, 189, 0.1);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .download-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(74, 105, 189, 0.3);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+        
+        .download-icon {
+            font-size: 3rem;
+            margin-bottom: 25px;
+            color: var(--accent-color);
+        }
+        
+        .download-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+        
+        .download-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 25px;
+        }
+        
+        .version-tag {
+            display: inline-block;
+            background: rgba(10, 189, 227, 0.1);
+            color: var(--accent-color);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            margin-bottom: 25px;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 12px 30px;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(10, 189, 227, 0.4);
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(10, 189, 227, 0.6);
+        }
+        
+        .requirements {
+            margin-top: 60px;
+            background: rgba(18, 18, 37, 0.7);
+            border-radius: 20px;
+            padding: 30px;
+            border: 1px solid rgba(74, 105, 189, 0.1);
+        }
+        
+        .requirements h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--text-color);
+        }
+        
+        .requirements ul {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .requirements li {
+            position: relative;
+            padding-left: 25px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+        
+        .requirements li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+        
+        .note-box {
+            margin-top: 40px;
+            background-color: rgba(57, 108, 240, 0.1);
+            border-left: 4px solid #396cf0;
+            padding: 15px 20px;
+            border-radius: 4px;
+        }
+        
+        .note-box i {
+            color: #396cf0;
+            font-size: 24px;
+            margin-right: 15px;
+        }
+        
+        .modal-message {
+            color: #ff6b6b;
+            font-weight: 500;
+            margin: 15px 0;
+            padding: 10px 15px;
+            background-color: rgba(255, 107, 107, 0.1);
+            border-radius: 8px;
+            border-left: 3px solid #ff6b6b;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        
+        .free-label {
+            position: absolute;
+            top: 20px;
+            right: -35px;
+            background: #ff6b6b;
+            color: white;
+            padding: 5px 40px;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transform: rotate(45deg);
+            box-shadow: 0 2px 10px rgba(255, 107, 107, 0.4);
+            z-index: 2;
+        }
+        
+        .free-label i {
+            margin-right: 5px;
+        }
+        
+        .highlight-free {
+            background-color: rgba(10, 189, 227, 0.1);
+            border-left: 4px solid #0abde3;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 40px;
+            box-shadow: 0 5px 15px rgba(10, 189, 227, 0.1);
+        }
+        
+        .highlight-free p {
+            margin: 0;
+            font-size: 1.05rem;
+        }
+        
+        .highlight-free strong {
+            color: #ff6b6b;
+            font-size: 1.1rem;
+        }
+        
+        .time-limited {
+            margin-top: 15px;
+            margin-bottom: 10px;
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            background: rgba(255, 107, 107, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            animation: pulse-time 2s infinite;
+        }
+        
+        .time-limited i {
+            font-size: 1rem;
+        }
+        
+        @keyframes pulse-time {
+            0% {
+                opacity: 0.8;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0.8;
+            }
+        }
+        
+        .source-note {
+            background-color: rgba(52, 58, 64, 0.1);
+            border-left: 4px solid #343a40;
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+        
+        .source-note i {
+            color: #343a40;
+            font-size: 20px;
+            margin-right: 12px;
+        }
+        
+        .source-note p {
+            margin: 0;
+            display: inline-block;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>RemoteCtrl</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="index.html">首页</a></li>
+                    <li><a href="index.html#features">功能特性</a></li>
+                    <li><a href="index.html#architecture">系统架构</a></li>
+                    <li><a href="index.html#security">安全保障</a></li>
+                    <li><a href="index.html#demo">演示效果</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="download-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>免费软件下载中心</h2>
+                <p>获取免费的远程控制系统软件</p>
+            </div>
+            
+            <div class="download-cards">
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="bi bi-pc-display"></i>
+                    </div>
+                    <span class="version-tag">v1.0.0 稳定版</span>
+                    <div class="free-label">
+                        <i class="bi bi-gift"></i> 免费
+                    </div>
+                    <h3>客户端程序</h3>
+                    <p>用于安装在需要被控制的Windows设备上的客户端程序，支持Windows 7/8/10/11系统。</p>
+                    <a href="#" class="download-btn" id="clientDownloadBtn">
+                        <i class="bi bi-download"></i> 下载客户端
+                    </a>
+                </div>
+                
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="bi bi-hdd-rack"></i>
+                    </div>
+                    <span class="version-tag">v1.0.0 稳定版</span>
+                    <div class="free-label">
+                        <i class="bi bi-gift"></i> 免费
+                    </div>
+                    <h3>服务器端程序</h3>
+                    <p>用于搭建控制中心的服务器端程序，包含管理界面和API，支持PHP 7.0及以上环境。</p>
+                    <a href="javascript:void(0);" onclick="openWechatModal('服务器程序版本需确认您的部署环境，请添加微信获取合适的版本')" class="download-btn">
+                        <i class="bi bi-download"></i> 下载服务端
+                    </a>
+                </div>
+                
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="bi bi-journal-text"></i>
+                    </div>
+                    <span class="version-tag">PDF文档</span>
+                    <div class="free-label">
+                        <i class="bi bi-gift"></i> 免费
+                    </div>
+                    <h3>使用文档</h3>
+                    <p>详细的安装指南、配置教程和使用手册，帮助您快速部署和使用远程控制系统。</p>
+                    <a href="javascript:void(0);" onclick="openWechatModal('最新文档会不断更新，请添加微信获取最新版本的文档')" class="download-btn">
+                        <i class="bi bi-download"></i> 下载文档
+                    </a>
+                </div>
+            </div>
+            
+            <div class="requirements">
+                <h3>系统要求</h3>
+                <ul>
+                    <li>Windows 7/8/10/11 操作系统（客户端）</li>
+                    <li>支持PHP 7.0及以上的Web服务器（服务端）</li>
+                    <li>MySQL 5.6或更高版本（服务端）</li>
+                    <li>客户端设备需连接到互联网</li>
+                    <li>服务器需要有公网IP或域名</li>
+                    <li>最低1GB内存（客户端）</li>
+                    <li>最低2GB内存（服务器端）</li>
+                    <li>支持Chrome、Firefox、Edge等现代浏览器</li>
+                </ul>
+                
+                <div class="note-box highlight-free">
+                    <i class="bi bi-info-circle-fill"></i>
+                    <p><strong>本软件提供免费下载使用</strong>。软件为闭源项目，仅提供编译后的程序，源代码不对外开放。如需定制功能或技术支持，请通过微信联系开发者。</p>
+                </div>
+                
+                <div class="note-box source-note">
+                    <i class="bi bi-lock-fill"></i>
+                    <p>注意：本软件是闭源项目，不提供源代码。如有定制需求，请联系开发者。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 在下载页面添加教育场景说明 -->
+    <section class="contact-banner">
+        <div class="container">
+            <div class="banner-content">
+                <div class="banner-text">
+                    <h2><i class="bi bi-mortarboard-fill"></i> 适合学校机房和教室环境!</h2>
+                    <p>本系统专为教育环境设计，方便教师在计算机课堂上进行屏幕管理和统一操作。学校可以在每个班级电脑和白板上部署本系统，实现高效教学。</p>
+                    <div class="contact-btns">
+                        <a href="#" class="contact-link" id="showWechatBtn">
+                            <i class="bi bi-chat-dots-fill"></i> 联系获取技术支持
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>RemoteCtrl</h2>
+                    <p>专业的远程设备控制解决方案</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h3>快速链接</h3>
+                        <ul>
+                            <li><a href="index.html#features">功能特性</a></li>
+                            <li><a href="index.html#architecture">系统架构</a></li>
+                            <li><a href="index.html#security">安全保障</a></li>
+                            <li><a href="index.html#demo">演示效果</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-column">
+                        <h3>资源中心</h3>
+                        <ul>
+                            <li><a href="#">用户手册</a></li>
+                            <li><a href="#">技术文档</a></li>
+                            <li><a href="#">常见问题</a></li>
+                            <li><a href="download.html">下载中心</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-column contact-column">
+                        <h3>商务合作</h3>
+                        <div class="wechat-container">
+                            <img src="WeChat.jpg" alt="商务合作微信" class="wechat-qrcode">
+                            <div class="contact-info">
+                                <p class="contact-title">扫码添加微信咨询</p>
+                                <p class="wechat-tip">提供定制开发、技术支持和商务合作</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 RemoteCtrl 远程控制系统. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 添加浮动联系按钮 -->
+    <button class="contact-btn" id="contactButton">
+        <i class="bi bi-chat-dots-fill"></i>
+    </button>
+
+    <!-- 新的微信弹窗设计 -->
+    <div class="wechat-modal" id="wechatModal">
+        <div class="wechat-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-left">
+                    <h3>联系作者</h3>
+                    <p class="modal-desc">扫描二维码添加微信，获取以下服务：</p>
+                    <p id="modalMessage" class="modal-message"></p>
+                    <ul class="service-list">
+                        <li><i class="bi bi-check-circle-fill"></i> 免费技术支持与问题排查</li>
+                        <li><i class="bi bi-check-circle-fill"></i> 学校部署方案与指导</li>
+                        <li><i class="bi bi-check-circle-fill"></i> 功能定制与开发咨询</li>
+                        <li><i class="bi bi-check-circle-fill"></i> 提供远程安装协助</li>
+                    </ul>
+                </div>
+                <div class="modal-right">
+                    <div class="qrcode-container">
+                        <img src="WeChat.jpg" alt="微信二维码" class="modal-qrcode">
+                        <p class="scan-tip">微信扫一扫</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // 直接定义全局函数，确保可以从HTML中调用
+        function openWechatModal(message) {
+            const modalMessage = document.getElementById('modalMessage');
+            if (modalMessage && message) {
+                modalMessage.textContent = message;
+            }
+            
+            const wechatModal = document.getElementById('wechatModal');
+            wechatModal.style.display = "flex";
+            setTimeout(() => {
+                wechatModal.classList.add('show');
+            }, 10);
+        }
+        
+        function closeWechatModal() {
+            const wechatModal = document.getElementById('wechatModal');
+            wechatModal.classList.remove('show');
+            setTimeout(() => {
+                wechatModal.style.display = "none";
+            }, 300);
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // 只保留客户端下载的事件处理
+            document.getElementById('clientDownloadBtn').addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('客户端程序即将开始下载，如未自动下载，请点击"确定"后再次点击下载按钮。');
+                // 这里替换为实际的下载链接
+                // window.location.href = 'downloads/remote_client_setup.exe';
+            });
+            
+            // 处理导航栏的状态
+            window.addEventListener('scroll', function() {
+                const header = document.querySelector('.header');
+                if (window.scrollY > 50) {
+                    header.style.padding = '10px 0';
+                    header.style.background = 'rgba(12, 12, 29, 0.95)';
+                } else {
+                    header.style.padding = '20px 0';
+                    header.style.background = 'rgba(12, 12, 29, 0.8)';
+                }
+            });
+            
+            // 移动端导航切换
+            const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+            const mainNav = document.querySelector('.main-nav');
+            
+            if (mobileNavToggle) {
+                mobileNavToggle.addEventListener('click', function() {
+                    mainNav.classList.toggle('active');
+                    this.classList.toggle('active');
+                });
+            }
+            
+            // 微信联系弹窗
+            const contactButton = document.getElementById('contactButton');
+            const showWechatBtn = document.getElementById('showWechatBtn');
+            const closeModal = document.querySelector('.close-modal');
+            
+            // 联系按钮点击事件
+            if (contactButton) {
+                contactButton.addEventListener('click', function() {
+                    openWechatModal('');
+                });
+            }
+            
+            if (showWechatBtn) {
+                showWechatBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openWechatModal('');
+                });
+            }
+            
+            if (closeModal) {
+                closeModal.addEventListener('click', closeWechatModal);
+            }
+            
+            // 点击模态框外部关闭
+            window.addEventListener('click', function(event) {
+                if (event.target.id === 'wechatModal') {
+                    closeWechatModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
