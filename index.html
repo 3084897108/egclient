@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>远程控制系统 - 专业免费的远程设备管理解决方案</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <style>
+        /* 强制显示样式 */
+        .tab-pane {
+            display: none !important;
+        }
+        .tab-pane.active {
+            display: block !important;
+        }
+        .demo-animation {
+            display: block !important;
+            min-height: 500px;
+        }
+        /* 确保仪表盘可见 */
+        .gauge-fill {
+            background-color: #0abde3 !important;
+        }
+        /* 确保终端窗口可见 */
+        .terminal-window {
+            background-color: #1a1a2e !important;
+            color: white !important;
+            min-height: 300px !important;
+        }
+        .terminal-body {
+            padding: 15px !important;
+            color: white !important;
+        }
+        .terminal-output {
+            color: #b3b3cc !important;
+            white-space: pre-wrap !important;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>RemoteCtrl</h1>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#features">功能特性</a></li>
+                    <li><a href="#architecture">系统架构</a></li>
+                    <li><a href="#security">安全保障</a></li>
+                    <li><a href="#demo">演示效果</a></li>
+                    <li><a href="download.html">免费下载</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="glitch-text" data-text="远程控制系统">远程控制系统</h1>
+                <div class="free-badge">
+                    <span><i class="bi bi-gift"></i> 免费软件</span>
+                </div>
+                <p>一套功能强大的远程设备控制解决方案，支持通过Web界面远程控制和管理多台Windows设备。</p>
+                <div class="hero-buttons">
+                    <a href="#features" class="btn-primary">了解更多</a>
+                    <a href="download.html" class="btn-secondary">免费下载</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="device-mockup">
+                    <div class="screen">
+                        <img src="zhanshi.png" alt="远程控制界面" class="screenshot">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wave-container">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+                <path fill="#0c0c1d" fill-opacity="1" d="M0,256L48,240C96,224,192,192,288,192C384,192,480,224,576,224C672,224,768,192,864,176C960,160,1056,160,1152,160C1248,160,1344,160,1392,160L1440,160L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+            </svg>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2>功能特性</h2>
+                <p>强大而全面的设备控制能力</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-cpu"></i>
+                    </div>
+                    <h3>设备管理</h3>
+                    <p>自动注册和识别设备，支持添加设备备注和标签，轻松管理上百台设备。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-terminal"></i>
+                    </div>
+                    <h3>远程命令执行</h3>
+                    <p>一键发送系统命令、应用程序命令、键盘命令等，远程操控目标设备。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-power"></i>
+                    </div>
+                    <h3>系统控制</h3>
+                    <p>远程关机、重启、锁定屏幕等操作，灵活管理设备电源状态。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-display"></i>
+                    </div>
+                    <h3>屏幕操作</h3>
+                    <p>截取远程设备屏幕，实时了解远程设备显示内容。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-keyboard"></i>
+                    </div>
+                    <h3>键盘模拟</h3>
+                    <p>模拟键盘按键和组合键，实现远程快捷键操作。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-volume-up"></i>
+                    </div>
+                    <h3>音频控制</h3>
+                    <p>远程调节音量、切换曲目等媒体控制，完全掌控设备声音系统。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-link-45deg"></i>
+                    </div>
+                    <h3>一次性链接</h3>
+                    <p>生成临时控制链接，可设置有效期和使用次数，安全分享控制权限。</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="bi bi-activity"></i>
+                    </div>
+                    <h3>设备状态监控</h3>
+                    <p>实时监控设备在线状态、系统资源使用情况，及时发现异常。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture" class="architecture">
+        <div class="container">
+            <div class="section-header">
+                <h2>系统架构</h2>
+                <p>稳定可靠的客户端/服务器架构</p>
+            </div>
+            <div class="architecture-content">
+                <div class="architecture-image">
+                    <div class="architecture-diagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" class="architecture-svg">
+                            <!-- 简化的架构图 -->
+                            <rect x="50" y="120" width="250" height="160" rx="20" fill="#1a1a2e" stroke="#4a69bd" stroke-width="2"/>
+                            <rect x="500" y="120" width="250" height="160" rx="20" fill="#1a1a2e" stroke="#4a69bd" stroke-width="2"/>
+                            <text x="175" y="180" fill="#ffffff" text-anchor="middle" font-size="24">Web服务器端</text>
+                            <text x="175" y="210" fill="#b3b3cc" text-anchor="middle" font-size="16">(PHP后端)</text>
+                            <text x="625" y="180" fill="#ffffff" text-anchor="middle" font-size="24">客户端设备</text>
+                            <text x="625" y="210" fill="#b3b3cc" text-anchor="middle" font-size="16">(C++程序)</text>
+                            <path d="M300 160 L500 160" stroke="#0abde3" stroke-width="3" stroke-dasharray="10,5"/>
+                            <text x="400" y="145" fill="#0abde3" text-anchor="middle" font-size="14">HTTP</text>
+                            <path d="M500 200 L300 200" stroke="#e74c3c" stroke-width="3" stroke-dasharray="10,5"/>
+                            <text x="400" y="230" fill="#e74c3c" text-anchor="middle" font-size="14">命令/心跳检测</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="architecture-text">
+                    <div class="architecture-item">
+                        <h3><i class="bi bi-hdd-rack"></i> 服务器端组件</h3>
+                        <ul>
+                            <li><strong>Web前端界面</strong>：管理员控制面板，用于发送命令和查看设备</li>
+                            <li><strong>API处理脚本</strong>：处理命令请求并写入命令文件</li>
+                            <li><strong>设备管理接口</strong>：处理设备注册、心跳和状态更新</li>
+                        </ul>
+                    </div>
+                    <div class="architecture-item">
+                        <h3><i class="bi bi-pc-display"></i> 客户端组件</h3>
+                        <ul>
+                            <li><strong>主程序</strong>：连接服务器、执行命令、发送心跳</li>
+                            <li><strong>设备标识</strong>：基于硬件特征的设备识别机制</li>
+                            <li><strong>多级自启动</strong>：确保系统启动时自动运行</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="security" class="security">
+        <div class="container">
+            <div class="section-header">
+                <h2>安全保障</h2>
+                <p>多层次的安全防护机制</p>
+            </div>
+            <div class="security-content">
+                <div class="security-grid">
+                    <div class="security-card">
+                        <div class="security-icon">
+                            <i class="bi bi-shield-lock"></i>
+                        </div>
+                        <h3>访问控制</h3>
+                        <p>控制面板采用强密码保护，防止未授权访问</p>
+                    </div>
+                    <div class="security-card">
+                        <div class="security-icon">
+                            <i class="bi bi-fingerprint"></i>
+                        </div>
+                        <h3>设备认证</h3>
+                        <p>基于硬件特征的设备识别机制，防止克隆</p>
+                    </div>
+                    <div class="security-card">
+                        <div class="security-icon">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+                        <h3>命令去重</h3>
+                        <p>多层命令去重机制，确保命令不会被重复执行</p>
+                    </div>
+                    <div class="security-card">
+                        <div class="security-icon">
+                            <i class="bi bi-journal-check"></i>
+                        </div>
+                        <h3>操作审计</h3>
+                        <p>详细记录所有命令操作，支持追溯回放</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="demo" class="demo">
+        <div class="container">
+            <div class="section-header">
+                <h2>演示效果</h2>
+                <p>直观体验系统功能</p>
+            </div>
+            <div class="demo-content">
+                <div class="tabs" id="demo-tabs">
+                    <div class="tab-header">
+                        <div class="tab-item active">设备管理</div>
+                    </div>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tab1">
+                            <div class="demo-animation">
+                                <div class="device-list-animation">
+                                    <div class="device-header">
+                                        <span class="device-name">设备名称</span>
+                                        <span class="device-status">状态</span>
+                                        <span class="device-ip">IP地址</span>
+                                        <span class="device-info">系统信息</span>
+                                    </div>
+                                    <div class="device-item online">
+                                        <span class="device-name">电脑-办公室-01</span>
+                                        <span class="device-status"><i class="bi bi-circle-fill"></i> 在线</span>
+                                        <span class="device-ip">192.168.1.101</span>
+                                        <span class="device-info">Windows 10</span>
+                                    </div>
+                                    <div class="device-item online">
+                                        <span class="device-name">电脑-会议室-02</span>
+                                        <span class="device-status"><i class="bi bi-circle-fill"></i> 在线</span>
+                                        <span class="device-ip">192.168.1.102</span>
+                                        <span class="device-info">Windows 11</span>
+                                    </div>
+                                    <div class="device-item offline">
+                                        <span class="device-name">电脑-前台-03</span>
+                                        <span class="device-status"><i class="bi bi-circle-fill"></i> 离线</span>
+                                        <span class="device-ip">192.168.1.103</span>
+                                        <span class="device-info">Windows 10</span>
+                                    </div>
+                                    <div class="device-item soon">
+                                        <span class="device-name">电脑-员工-04</span>
+                                        <span class="device-status"><i class="bi bi-circle-fill"></i> 连接中</span>
+                                        <span class="device-ip">192.168.1.104</span>
+                                        <span class="device-info">Windows 10</span>
+                                    </div>
+                                </div>
+                                <div class="animation-control">
+                                    <div class="control-btns">
+                                        <button class="anim-btn" id="addDeviceBtn"><i class="bi bi-plus-circle"></i> 添加设备</button>
+                                        <button class="anim-btn" id="refreshBtn"><i class="bi bi-arrow-clockwise"></i> 刷新列表</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="demo-description">
+                                <h3>高效的设备管理</h3>
+                                <p>通过直观的Web界面，轻松管理所有远程设备。支持设备分组、标签管理和详细信息查看。快速识别设备状态，实时监控设备性能指标。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="demo-notice">
+                    <div class="notice-box">
+                        <i class="bi bi-info-circle-fill"></i>
+                        <p>注意：命令执行和系统状态监控功能正在进行性能优化，将在下一版本中推出。当前只展示设备管理功能的演示效果。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>RemoteCtrl</h2>
+                    <p>专业的远程设备控制解决方案</p>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-links-column">
+                        <h3>快速链接</h3>
+                        <ul>
+                            <li><a href="#features">功能特性</a></li>
+                            <li><a href="#architecture">系统架构</a></li>
+                            <li><a href="#security">安全保障</a></li>
+                            <li><a href="#demo">演示效果</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-column">
+                        <h3>资源中心</h3>
+                        <ul>
+                            <li><a href="#">用户手册</a></li>
+                            <li><a href="#">技术文档</a></li>
+                            <li><a href="#">常见问题</a></li>
+                            <li><a href="download.html">下载中心</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-links-column contact-column">
+                        <h3>商务合作</h3>
+                        <div class="wechat-container">
+                            <img src="WeChat.jpg" alt="商务合作微信" class="wechat-qrcode">
+                            <div class="contact-info">
+                                <p class="contact-title">扫码添加微信咨询</p>
+                                <p class="wechat-tip">提供定制开发、技术支持和商务合作</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 RemoteCtrl 远程控制系统. 保留所有权利.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 在页面显眼位置添加联系说明 -->
+    <section class="contact-banner">
+        <div class="container">
+            <div class="banner-content">
+                <div class="banner-text">
+                    <h2><i class="bi bi-lightning-charge-fill"></i> 欢迎学校和教育机构使用!</h2>
+                    <p>本系统特别适合教学环境，可在教室、机房、多媒体教室等场景使用。老师可通过系统控制学生端电脑，进行集中展示和统一管理。</p>
+                    <div class="contact-btns">
+                        <a href="#" class="contact-link" id="showWechatBtn">
+                            <i class="bi bi-chat-dots-fill"></i> 联系获取技术支持
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+    
+    <!-- 新的微信弹窗设计 -->
+    <div class="wechat-modal" id="wechatModal">
+        <div class="wechat-modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="modal-body">
+                <div class="modal-left">
+                    <h3>联系作者</h3>
+                    <p class="modal-desc">扫描二维码添加微信，获取以下服务：</p>
+                    <ul class="service-list">
+                        <li><i class="bi bi-check-circle-fill"></i> 免费技术支持与问题排查</li>
+                        <li><i class="bi bi-check-circle-fill"></i> 学校部署方案与指导</li>
+                        <li><i class="bi bi-check-circle-fill"></i> 功能定制与开发咨询</li>
+                        <li><i class="bi bi-check-circle-fill"></i> 提供远程安装协助</li>
+                    </ul>
+                </div>
+                <div class="modal-right">
+                    <div class="qrcode-container">
+                        <img src="WeChat.jpg" alt="微信二维码" class="modal-qrcode">
+                        <p class="scan-tip">微信扫一扫</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 简洁的浮动联系按钮 -->
+    <button class="contact-btn" id="contactButton">
+        <i class="bi bi-chat-dots-fill"></i>
+    </button>
+    
+    <script>
+        // 内联脚本确保标签切换功能正常工作
+        function switchTab(tabId) {
+            // 移除所有活动类
+            document.querySelectorAll('.tab-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('active');
+            });
+            
+            // 找到点击的标签
+            const clickedTab = document.querySelector(`.tab-item[onclick="switchTab('${tabId}')"]`);
+            if (clickedTab) {
+                clickedTab.classList.add('active');
+            }
+            
+            // 显示相应的内容
+            const pane = document.getElementById(tabId);
+            if (pane) {
+                pane.classList.add('active');
+            }
+            
+            // 如果是命令执行标签页，执行命令
+            if (tabId === 'tab2') {
+                simulateCommand('systeminfo');
+            }
+            
+            // 如果是系统状态标签页，更新图表
+            if (tabId === 'tab3') {
+                updateGauges();
+            }
+        }
+        
+        // 模拟命令执行
+        function simulateCommand(cmd) {
+            const terminalOutput = document.getElementById('terminalOutput');
+            const typingCommand = document.getElementById('typingCommand');
+            
+            let commandText = '';
+            let outputText = '';
+            
+            switch(cmd) {
+                case 'systeminfo':
+                    commandText = 'systeminfo | findstr /B "主机名 OS名称 OS版本"';
+                    outputText = `
+                        主机名:           DESKTOP-AB123CD
+                        OS 名称:          Microsoft Windows 10 专业版
+                        OS 版本:          10.0.19045 Build 19045
+                    `;
+                    break;
+                case 'tasklist':
+                    commandText = 'tasklist | findstr "explorer chrome"';
+                    outputText = `
+                        explorer.exe                  4512 Console                 1     32,768 K
+                        chrome.exe                    8756 Console                 1    325,540 K
+                        chrome.exe                    9012 Console                 1    125,760 K
+                        chrome.exe                    2348 Console                 1     88,420 K
+                    `;
+                    break;
+                case 'shutdown':
+                    commandText = 'shutdown /s /t 60 /c "系统将在60秒后关机"';
+                    outputText = `
+                        正在计划系统关机。
+                        系统将在60秒后关机。
+                        注销原因: 系统将在60秒后关机
+                    `;
+                    break;
+                case 'restart':
+                    commandText = 'shutdown /r /t 60 /c "系统将在60秒后重启"';
+                    outputText = `
+                        正在计划系统重启。
+                        系统将在60秒后重启。
+                        注销原因: 系统将在60秒后重启
+                    `;
+                    break;
+            }
+            
+            typingCommand.textContent = commandText;
+            terminalOutput.textContent = '';
+            
+            setTimeout(() => {
+                terminalOutput.textContent = outputText;
+            }, 500);
+        }
+        
+        // 更新仪表盘
+        function updateGauges() {
+            const cpuGauge = document.getElementById('cpuGauge');
+            const memoryGauge = document.getElementById('memoryGauge');
+            const cpuValue = document.getElementById('cpuValue');
+            const memoryValue = document.getElementById('memoryValue');
+            
+            // 随机值
+            const cpuUsage = Math.floor(Math.random() * 80) + 10;
+            const memoryUsage = Math.floor(Math.random() * 70) + 20;
+            
+            // 更新仪表盘
+            cpuGauge.style.height = `${cpuUsage}%`;
+            memoryGauge.style.height = `${memoryUsage}%`;
+            cpuValue.textContent = `${cpuUsage}%`;
+            memoryValue.textContent = `${memoryUsage}%`;
+            
+            // 更新柱状图
+            const bars = document.querySelectorAll('.chart-bar');
+            bars.forEach(bar => {
+                bar.style.height = `${Math.floor(Math.random() * 60) + 5}%`;
+            });
+            
+            // 继续动画
+            setTimeout(updateGauges, 3000);
+        }
+        
+        // 切换设备
+        function changeDevice() {
+            const alertsContainer = document.querySelector('.system-alerts');
+            if (alertsContainer) {
+                // 清空警报
+                alertsContainer.innerHTML = '';
+                
+                // 添加新警报
+                const now = new Date();
+                const timeString = now.getHours().toString().padStart(2, '0') + ':' + 
+                                  now.getMinutes().toString().padStart(2, '0') + ':' + 
+                                  now.getSeconds().toString().padStart(2, '0');
+                
+                const alert = document.createElement('div');
+                alert.className = 'alert-item';
+                alert.innerHTML = `
+                    <i class="bi bi-info-circle"></i>
+                    <span class="alert-message">已切换监控设备</span>
+                    <span class="alert-time">${timeString}</span>
+                `;
+                
+                alertsContainer.insertBefore(alert, alertsContainer.firstChild);
+            }
+            
+            // 重新初始化仪表盘
+            updateGauges();
+        }
+        
+        // 确保页面加载完成后开始动画
+        document.addEventListener('DOMContentLoaded', function() {
+            // 初始化默认标签页的动画
+            const activeTab = document.querySelector('.tab-item.active');
+            if (activeTab) {
+                const tabId = activeTab.getAttribute('onclick').match(/'(.*?)'/)[1];
+                if (tabId === 'tab2') {
+                    simulateCommand('systeminfo');
+                } else if (tabId === 'tab3') {
+                    updateGauges();
+                }
+            }
+        });
+
+        // 微信联系弹窗
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactButton = document.getElementById('contactButton');
+            const showWechatBtn = document.getElementById('showWechatBtn');
+            const wechatModal = document.getElementById('wechatModal');
+            const closeModal = document.querySelector('.close-modal');
+            
+            function openModal() {
+                wechatModal.style.display = "flex";
+                setTimeout(() => {
+                    wechatModal.classList.add('show');
+                }, 10);
+            }
+            
+            function closeModal() {
+                wechatModal.classList.remove('show');
+                setTimeout(() => {
+                    wechatModal.style.display = "none";
+                }, 300);
+            }
+            
+            contactButton.addEventListener('click', openModal);
+            
+            if (showWechatBtn) {
+                showWechatBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    openModal();
+                });
+            }
+            
+            closeModal.addEventListener('click', closeModal);
+            
+            // 点击模态框外部关闭
+            window.addEventListener('click', function(event) {
+                if (event.target == wechatModal) {
+                    closeModal();
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
